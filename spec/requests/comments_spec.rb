@@ -32,5 +32,25 @@ RSpec.describe "Comments", type: :request do
       expect(response.body).to include('turbo-stream action="replace" target="new_comment"')
       expect(CGI.unescapeHTML(response.body)).to include("Content can't be blank")
     end
+
+    it "redirects with notice on HTML success" do
+      expect do
+        post article_comments_path(article),
+             params: { comment: { content: "Great post" } }
+      end.to change(article.comments, :count).by(1)
+
+      expect(response).to redirect_to(article_path(article))
+      expect(flash[:notice]).to eq("Comment was successfully created.")
+    end
+
+    it "redirects with alert on HTML failure" do
+      expect do
+        post article_comments_path(article),
+             params: { comment: { content: "" } }
+      end.not_to change(article.comments, :count)
+
+      expect(response).to redirect_to(article_path(article))
+      expect(flash[:alert]).to eq("Comment could not be created.")
+    end
   end
 end
