@@ -29,7 +29,7 @@ permissions:
 jobs:
   build:
     name: Build Production Image
-    uses: eckslopez/platform-pipelines/.github/workflows/image-build.yml@main
+    uses: zavestudios/platform-pipelines/.github/workflows/image-build.yml@main
     with:
       dockerfile: production.Dockerfile
       tags: rigoberta:ci

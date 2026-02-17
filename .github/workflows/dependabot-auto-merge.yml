@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   auto-merge:
-    uses: eckslopez/platform-pipelines/.github/workflows/dependabot-auto-merge.yml@main
+    uses: zavestudios/platform-pipelines/.github/workflows/dependabot-auto-merge.yml@main
     with:
       auto_merge_major: false
       auto_merge_minor: true

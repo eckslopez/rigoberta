@@ -2,12 +2,9 @@ name: Security Scan
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
   schedule:
     - cron: "0 9 * * 1" # Mondays 9:00 UTC
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -16,4 +13,4 @@ permissions:
 jobs:
   security:
     name: Security Scan
-    uses: eckslopez/platform-pipelines/.github/workflows/security-scan.yml@main
+    uses: zavestudios/platform-pipelines/.github/workflows/security-scan.yml@main
