@@ -1,4 +1,8 @@
-<%= form_with model: [ article, comment ] do |form| %>
+<%= form_with model: [ article, comment ],
+              data: {
+                controller: "submit-state",
+                action: "turbo:submit-start->submit-state#submitting turbo:submit-end->submit-state#submitted"
+              } do |form| %>
   Your comment:<br>
   <%= form.text_area :content, size: "20x5" %>
   <% if comment.errors.any? %>
@@ -6,5 +10,5 @@
       <%= comment.errors.full_messages.to_sentence %>
     </div>
   <% end %>
-  <%= form.submit %>
+  <%= form.submit data: { submit_state_target: "button" } %>
 <% end %>
