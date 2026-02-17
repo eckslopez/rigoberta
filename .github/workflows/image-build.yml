@@ -1,9 +1,26 @@
 name: Build Image
 
 on:
+  pull_request:
+    paths:
+      - Dockerfile
+      - production.Dockerfile
+      - Gemfile
+      - Gemfile.lock
+      - app/**
+      - config/**
+      - bin/**
   push:
     branches:
       - main
+    paths:
+      - Dockerfile
+      - production.Dockerfile
+      - Gemfile
+      - Gemfile.lock
+      - app/**
+      - config/**
+      - bin/**
   workflow_dispatch:
 
 permissions:
@@ -14,6 +31,5 @@ jobs:
     name: Build Production Image
     uses: zavestudios/platform-pipelines/.github/workflows/image-build.yml@main
     with:
-      context: .
       dockerfile: production.Dockerfile
       tags: rigoberta:ci
