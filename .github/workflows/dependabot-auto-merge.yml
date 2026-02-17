@@ -15,4 +15,5 @@ jobs:
       auto_merge_major: false
       auto_merge_minor: true
       auto_merge_patch: true
+      enable_auto_approve: false
       merge_method: 'squash'
