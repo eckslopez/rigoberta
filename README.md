@@ -2,6 +2,12 @@
 
 Rigoberta is a narrative reference app: "This is how I build a modern Rails service in 2026." It is intentionally small, teachable, and inspectable. The goal is not features; the goal is clarity and a repeatable standard you can fork.
 
+Repository Category: `tenant` (see `platform-docs/_platform/REPO_TAXONOMY.md`)
+
+Documentation authority boundary:
+- This repository documents workload implementation and operations for this tenant.
+- Platform governance, lifecycle, and contract doctrine remain authoritative in `platform-docs/_platform/`.
+
 ## What this is
 
 - A gold-standard Rails 7 service template

@@ -1,17 +1,21 @@
-# AGENTS.md
+# Agent Startup
 
+This repository operates under the platform contract.
 
-  ## Collaboration Workflow
+Read first:
 
-  We are using a tmux-first workflow for this repo.
+../platform-docs/_platform/PLATFORM_OPERATING_MODEL.md
+../platform-docs/_platform/REPO_TAXONOMY.md
+../platform-docs/_platform/ARCHITECTURAL_DOCTRINE_TIER0.md
+../platform-docs/_platform/CONTRACT_SCHEMA.md
+../platform-docs/_platform/CONTRACT_VALIDATION.md
+../platform-docs/_platform/LIFECYCLE_MODEL.md
+../platform-docs/_platform/GENERATOR_MODEL.md
+../platform-docs/_platform/PR_WORKFLOW.md
 
-  Working rules:
-  1. Keep VS Code as my editor; I run you from a terminal/tmux pane.
-  2. Use Docker for runtime services and test execution when needed.
-  3. Prefer bind mounts so host code edits are reflected quickly in container runs.
-  4. Before making changes, explain the plan briefly; then implement directly.
-  5. For larger tasks, explain each step first, then give exact edits/commands.
-  6. Keep responses concise and practical; teach as we go.
-  7. Never use destructive git commands unless I explicitly ask.
-  8. If dependencies conflict, resolve with a stable constraints-based strategy.
-  9. End each task with: what changed, how verified, and next action.
+Authority constraints:
+
+- No kubectl access.
+- Any kubectl steps must be labeled: **Run manually by human**.
+
+Before editing, classify repo scope using `REPO_TAXONOMY.md` and determine whether changes are single-repo or cross-repo.
