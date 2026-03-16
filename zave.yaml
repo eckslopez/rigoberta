@@ -1,0 +1,8 @@
+apiVersion: zave.io/v1
+kind: Workload
+metadata:
+  name: rigoberta
+spec:
+  runtime: container
+  exposure: public-http
+  delivery: rolling
