@@ -91,9 +91,9 @@ Create these as issues and track them in order:
 - Protect `main`: require CI checks and up-to-date branches
 - Enable auto-merge after CI for approved PRs
 
-## Local development
+## Local Development
 
-### Requirements
+### Prerequisites
 
 Docker Compose v2 is required (use `docker compose`, not `docker-compose`).
 
@@ -102,7 +102,7 @@ Check your version with:
 $ docker compose version
 ```
 
-### Initial setup
+### Quick Start
 ```
 cp .env.example .env
 docker compose build
