@@ -1,35 +1,28 @@
 name: Build Image
 
 on:
-  pull_request:
-    paths:
-      - Dockerfile
-      - production.Dockerfile
-      - Gemfile
-      - Gemfile.lock
-      - app/**
-      - config/**
-      - bin/**
   push:
     branches:
       - main
-    paths:
-      - Dockerfile
-      - production.Dockerfile
-      - Gemfile
-      - Gemfile.lock
-      - app/**
-      - config/**
-      - bin/**
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
+  packages: write
+  id-token: write
 
 jobs:
-  build:
-    name: Build Production Image
-    uses: zavestudios/platform-pipelines/.github/workflows/container-build.yml@main
+  build-and-dispatch:
+    name: Build and Push Container
+    uses: zavestudios/platform-pipelines/.github/workflows/container-build-dispatch.yml@main
     with:
+      image_name: zavestudios/rigoberta
       dockerfile: production.Dockerfile
-      tags: rigoberta:ci
+      push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      platforms: ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
+      dispatch_repository: zavestudios/gitops
+      dispatch_event_type: rigoberta-image-published
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITOPS_REPO_DISPATCH_TOKEN: ${{ secrets.GITOPS_REPO_DISPATCH_TOKEN }}

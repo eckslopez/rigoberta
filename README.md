@@ -30,6 +30,17 @@ This application runs as a tenant on the [ZaveStudios multi-tenant platform](lin
 - Deployment: ArgoCD GitOps via [kubernetes-platform-infrastructure](link)
 - Observability: Shared Prometheus/Grafana
 
+## Onboarding Status
+
+- Contract-backed tenant repo: yes
+- Shared platform workflows: yes
+- GitOps registration: in progress through `gitops`
+- Shared dependency requirement: PostgreSQL and Redis must exist before runtime readiness is claimed
+
+Formation note:
+- `zave.yaml` now declares PostgreSQL because `spec.persistence.engine` is single-valued in contract v0.1.
+- Redis remains a real runtime dependency for Action Cable and Sidekiq-related wiring, but it is still tracked outside the canonical contract surface for now.
+
 ## Goals
 
 - Be the cleanest, smallest Rails 7 reference service you can fork
