@@ -20,7 +20,7 @@ jobs:
       image_name: zavestudios/rigoberta
       dockerfile: production.Dockerfile
       push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-      platforms: ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
+      platforms: linux/amd64
       dispatch_repository: zavestudios/gitops
       dispatch_event_type: rigoberta-image-published
     secrets:

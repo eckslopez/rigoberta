@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get "up", to: "health#show"
   get "pipeline_runs/index"
   get "pipeline_runs/create"
   get "pipeline_runs/update"
