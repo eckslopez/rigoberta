@@ -17,3 +17,4 @@ jobs:
     with:
       ruby_version: '3.3'
       run_system_tests: false
+      test_command: bin/rspec

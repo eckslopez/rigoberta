@@ -6,3 +6,15 @@ spec:
   runtime: container
   exposure: public-http
   delivery: rolling
+
+  build:
+    mode: dockerfile
+
+  persistence:
+    engine: postgres
+
+  capabilities:
+    - name: metrics
+
+  resources:
+    tier: standard
