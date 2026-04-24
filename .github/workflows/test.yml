@@ -13,7 +13,7 @@ permissions:
 jobs:
   test:
     name: Run Test Suite
-    uses: zavestudios/platform-pipelines/.github/workflows/rails-test.yml@main
+    uses: zavestudios/platform-pipelines/.github/workflows/rails-test.yml@c0aa80bb405fa24ede5ebcf1c40b0be90328386c
     with:
       ruby_version: '3.3'
       run_system_tests: false
