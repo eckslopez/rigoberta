@@ -15,7 +15,7 @@ permissions:
 jobs:
   build-and-dispatch:
     name: Build and Push Container
-    uses: zavestudios/platform-pipelines/.github/workflows/container-build-dispatch.yml@main
+    uses: zavestudios/platform-pipelines/.github/workflows/container-build-dispatch.yml@c0aa80bb405fa24ede5ebcf1c40b0be90328386c
     with:
       image_name: zavestudios/rigoberta
       dockerfile: production.Dockerfile

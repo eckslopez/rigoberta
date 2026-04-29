@@ -13,7 +13,7 @@ permissions:
 jobs:
   lint:
     name: Lint & Security Checks
-    uses: zavestudios/platform-pipelines/.github/workflows/rails-lint.yml@main
+    uses: zavestudios/platform-pipelines/.github/workflows/rails-lint.yml@c0aa80bb405fa24ede5ebcf1c40b0be90328386c
     with:
       ruby_version: '3.3'
       run_rubocop: true
