@@ -31,16 +31,16 @@ RUN --mount=type=cache,target=/var/cache/apt \
     libyaml-dev \
     libpq-dev
 
-RUN gem update --system && gem install bundler
+RUN gem update --system 4.0.5 && gem install bundler -v 4.0.5
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 
 # TODO: consolidate bundle config better, currently split between ENV and `bundle config`
-RUN bundle config frozen true \
- && bundle config jobs 4 \
- && bundle config deployment true \
- && bundle config without 'development test' \
+RUN bundle config set --local frozen true \
+ && bundle config set --local jobs 4 \
+ && bundle config set --local deployment true \
+ && bundle config set --local without 'development test' \
  && bundle install \
  && bundle exec bootsnap precompile --gemfile
 
@@ -69,6 +69,10 @@ RUN --mount=type=cache,target=/var/cache/apt \
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
+
+# Remove the vulnerable default erb gemspec shipped in the base image. The app
+# already bundles erb 6.0.4 from Gemfile.lock.
+RUN ruby -e 'path = Dir[File.join(Gem.default_specifications_dir, "erb-4.0.3.gemspec")].first; File.delete(path) if path'
 
 # Run and own only the runtime files as a non-root user for security
 RUN mkdir -p tmp/pids tmp/cache tmp/prometheus_metrics log storage && \
