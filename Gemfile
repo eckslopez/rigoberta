@@ -17,7 +17,7 @@ gem "rails", "~> 8.1"
 gem "redis", "~> 5.4"
 gem "rexml", ">= 3.3.9"
 gem "rubocop-rails"
-gem "sidekiq", "8.1.3"
+gem "sidekiq", "8.1.7"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
@@ -45,5 +45,4 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
 end
