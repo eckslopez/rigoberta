@@ -14,3 +14,5 @@ jobs:
   security:
     name: Security Scan
     uses: zavestudios/platform-pipelines/.github/workflows/security-scan.yml@c0aa80bb405fa24ede5ebcf1c40b0be90328386c
+    with:
+      fetch_depth: 1
