@@ -29,7 +29,8 @@ RUN --mount=type=cache,target=/var/cache/apt \
     build-essential \
     gnupg2 \
     libyaml-dev \
-    libpq-dev
+    libpq-dev \
+    zlib1g-dev
 
 RUN gem update --system 4.0.5 && gem install bundler -v 4.0.5
 
@@ -63,6 +64,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
   rm -f /etc/apt/apt.conf.d/docker-clean; \
   echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache; \
   apt-get update -qq \
+  && apt-get upgrade -yq \
   && apt-get install -yq --no-install-recommends \
   libpq-dev
 
@@ -70,9 +72,9 @@ RUN --mount=type=cache,target=/var/cache/apt \
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
-# Remove the vulnerable default erb gemspec shipped in the base image. The app
-# already bundles erb 6.0.4 from Gemfile.lock.
-RUN ruby -e 'path = Dir[File.join(Gem.default_specifications_dir, "erb-4.0.3.gemspec")].first; File.delete(path) if path'
+# Remove vulnerable default gemspecs superseded by patched versions in the
+# application bundle.
+RUN ruby -e '%w[erb-4.0.3 net-imap-0.4.21 zlib-3.1.1].each { |gem| [Gem.default_specifications_dir, File.join(Gem.default_dir, "specifications")].each { |dir| path = File.join(dir, "#{gem}.gemspec"); File.delete(path) if File.exist?(path) } }'
 
 # Run and own only the runtime files as a non-root user for security
 RUN mkdir -p tmp/pids tmp/cache tmp/prometheus_metrics log storage && \

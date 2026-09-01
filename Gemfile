@@ -22,6 +22,7 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
 gem 'webrick'
+gem "zlib", ">= 3.2.3"
 
 # Monitoring
 gem 'yabeda-prometheus'
