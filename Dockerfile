@@ -18,6 +18,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
     git \
     libpq-dev \
     libyaml-dev \
+    zlib1g-dev \
     postgresql-client \
     libvips \
     curl \
